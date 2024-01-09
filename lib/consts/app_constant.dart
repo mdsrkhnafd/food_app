@@ -1,4 +1,5 @@
 
+import '../models/categories_model.dart';
 import '../services/assets_manager.dart';
 
 class AppConstants {
@@ -10,16 +11,20 @@ class AppConstants {
     AssetsManager.banner2,
   ];
 
-  // static List<CategoryModel> categoriesList = [
-  //   CategoryModel(
-  //     id: "Home",
-  //     image: AssetsManager.aircondition,
-  //     name: "Home",
-  //   ),
-  //   CategoryModel(
-  //     id: "Popular Recipes",
-  //     image: AssetsManager.homedecoration,
-  //     name: "Popular Recipes",
-  //   ),
-  // ];
+  static List<CategoryModel> categoriesList = [
+    CategoryModel(
+      id: "Home",
+      image: AssetsManager.aircondition,
+      name: "Home",
+    ),
+    CategoryModel(
+      id: "Popular Recipes",
+      image: AssetsManager.homedecoration,
+      name: "Popular Recipes",
+    ),
+  ];
+}
+
+class MyValidators {
+
 }

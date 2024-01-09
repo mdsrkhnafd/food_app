@@ -2,10 +2,15 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
+import 'package:food_app/providers/product_provider.dart';
+import 'package:food_app/providers/user_provider.dart';
+import 'package:food_app/providers/wishlist_provider.dart';
 import 'package:food_app/screens/favorite_screen.dart';
 import 'package:food_app/screens/home_screen.dart';
 import 'package:food_app/screens/meal_planer.dart';
 import 'package:food_app/screens/popular_recipe.dart';
+import 'package:food_app/screens/scan_recipe.dart';
+import 'package:provider/provider.dart';
 
 class RootScreen extends StatefulWidget {
   static const routeName = '/RootScreen';
@@ -31,40 +36,38 @@ class _RootScreenState extends State<RootScreen> {
       const PopularRecipe(),
       const FavoriteScreen(),
       const MealPlaner(),
+      const ScanRecipe(),
     ];
     controller = PageController(initialPage: currentScreen);
   }
 
-  // Future<void> fetchFCT() async {
-  //   final productProvider =
-  //       Provider.of<ProductsProvider>(context, listen: false);
-  //   final cartProvider =
-  //   Provider.of<CartProvider>(context, listen: false);
-  //
-  //   final wishlistsProvider = Provider.of<WishlistProvider>(context , listen: false);
-  //   final userProvider = Provider.of<UserProvider>(context , listen: false);
-  //
-  //   try {
-  //     Future.wait({
-  //       productProvider.fetchProducts(),
-  //       userProvider.fetchUserInfo(),
-  //     });
-  //     Future.wait({
-  //       cartProvider.fetchCart(),
-  //       wishlistsProvider.fetchWishlist(),
-  //     });
-  //   } catch (error) {
-  //     log(error.toString());
-  //   }
-  // }
+  Future<void> fetchFCT() async {
+    final productProvider = Provider.of<ProductsProvider>(context, listen: false);
 
-  // @override
-  // void didChangeDependencies() {
-  //   if (isLoadingProd) {
-  //     fetchFCT();
-  //   }
-  //   super.didChangeDependencies();
-  // }
+
+    final wishlistsProvider = Provider.of<WishlistProvider>(context , listen: false);
+    final userProvider = Provider.of<UserProvider>(context , listen: false);
+
+    try {
+      Future.wait({
+        productProvider.fetchProducts(),
+        userProvider.fetchUserInfo(),
+      });
+      Future.wait({
+        wishlistsProvider.fetchWishlist(),
+      });
+    } catch (error) {
+      log(error.toString());
+    }
+  }
+
+  @override
+  void didChangeDependencies() {
+    if (isLoadingProd) {
+      fetchFCT();
+    }
+    super.didChangeDependencies();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -86,16 +89,16 @@ class _RootScreenState extends State<RootScreen> {
           });
           controller.jumpToPage(currentScreen);
         },
-        destinations: [
-          const NavigationDestination(
+        destinations: const [
+          NavigationDestination(
               selectedIcon: Icon(IconlyBold.home),
               icon: Icon(IconlyLight.home),
               label: "Home"),
-          const NavigationDestination(
+          NavigationDestination(
               selectedIcon: Icon(IconlyBold.search),
               icon: Icon(IconlyLight.search),
               label: "Popular"),
-          const NavigationDestination(
+          NavigationDestination(
               selectedIcon: Icon(IconlyBold.search),
               icon: Icon(IconlyLight.search),
               label: "Favorite"),
@@ -106,10 +109,14 @@ class _RootScreenState extends State<RootScreen> {
           //         label: Text(cartProvider.getCartItems.length.toString()),
           //         child: const Icon(IconlyLight.bag2)),
           //     label: "Favorite"),
-          const NavigationDestination(
+          NavigationDestination(
               selectedIcon: Icon(IconlyBold.profile),
               icon: Icon(IconlyLight.profile),
               label: "Meal Planer"),
+          NavigationDestination(
+              selectedIcon: Icon(IconlyBold.camera),
+              icon: Icon(IconlyLight.camera),
+              label: "Scan Recipe"),
         ],
       ),
     );

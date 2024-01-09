@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ScanRecipe extends StatefulWidget {
+  static const routeName = '/ScanScreen';
   const ScanRecipe({super.key});
 
   @override
