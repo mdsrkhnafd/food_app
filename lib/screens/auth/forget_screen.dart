@@ -15,6 +15,7 @@ import '../../widgets/common/page_heading.dart';
 
 
 class ForgetScreen extends StatefulWidget {
+  static const routeName = '/ForgotPasswordScreen';
   const ForgetScreen({Key? key}) : super(key: key);
 
   @override
