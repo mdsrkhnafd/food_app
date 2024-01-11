@@ -97,14 +97,14 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
           centerTitle: true,
-          actions: [
-            IconButton(
-              icon: const Icon(Icons.camera_alt),
-              onPressed: () {
-                //showSearch(context: context, delegate: _CustomSearchDelegate());
-              },
-            ),
-          ],
+          // actions: [
+          //   IconButton(
+          //     icon: const Icon(Icons.camera_alt),
+          //     onPressed: () {
+          //       //showSearch(context: context, delegate: _CustomSearchDelegate());
+          //     },
+          //   ),
+          // ],
         ),
         drawer: SafeArea(
           child: Drawer(
@@ -262,7 +262,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                   TextField(
-                    // controller: searchTextController,
+                     controller: searchTextController,
                     decoration: InputDecoration(
                       border: const OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(30))),

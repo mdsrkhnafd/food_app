@@ -257,14 +257,14 @@ class _LoginScreenState extends State<LoginScreen> {
                                     height: kBottomNavigationBarHeight + 10,
                                     child: Row(
                                       children: [
-                                        const Expanded(
-                                          child: SizedBox(
-                                            height: kBottomNavigationBarHeight,
-                                            child: FittedBox(
-                                              child: GoogleButton(),
-                                            ),
-                                          ),
-                                        ),
+                                        // const Expanded(
+                                        //   child: SizedBox(
+                                        //     height: kBottomNavigationBarHeight,
+                                        //     child: FittedBox(
+                                        //       child: GoogleButton(),
+                                        //     ),
+                                        //   ),
+                                        // ),
                                         const SizedBox(
                                           width: 8,
                                         ),

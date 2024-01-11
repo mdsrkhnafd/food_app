@@ -26,10 +26,10 @@ class FavoriteScreen extends StatelessWidget {
         ? Scaffold(
       body: EmptyBagWidget(
         imagePath: AssetsManager.shoppingBasket,
-        title: "Your wishlist is empty",
+        title: "Your favorite is empty",
         subtitle:
-        'Looks like you didn\'t add anything yet to your cart \ngo ahead and start shopping now',
-        buttonText: "Shop Now",
+        '',
+        buttonText: "",
       ),
     )
         : Scaffold(

@@ -49,6 +49,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (_) => MealProvider(),
         ),
+        ChangeNotifierProvider(
+          create: (_) => MealProvider(),
+        ),
 
       ],
       child: Consumer<ThemeProvider>(
