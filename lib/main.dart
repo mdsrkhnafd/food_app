@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gemini/flutter_gemini.dart';
 import 'package:food_app/providers/meal_provider.dart';
 import 'package:food_app/providers/product_provider.dart';
 import 'package:food_app/providers/theme_provider.dart';
@@ -21,6 +22,7 @@ import 'package:provider/provider.dart';
 import 'consts/theme_data.dart';
 
 void main() async {
+  Gemini.init(apiKey: 'AIzaSyAYrpuAC96VximOi378Jx54aKUNiCuReCY');
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(const MyApp());
@@ -59,7 +61,7 @@ class MyApp extends StatelessWidget {
             themeProvider,
             child,) {
           return MaterialApp(
-            title: 'Shop Smart AR',
+            title: 'Recipe Pal',
             debugShowCheckedModeBanner: false,
             theme: Styles.themeData(
                 isDarkTheme: themeProvider.getIsDarkTheme, context: context),

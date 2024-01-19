@@ -65,8 +65,8 @@ class _MealWidgetState extends State<MealWidget> {
                     ),
                     IconButton(
                       icon: const Icon(Icons.delete),
-                      onPressed: () => () {
-
+                      onPressed: () => () async {
+                       await mealsProvider.removeMealFromFirestore(productId: getCurrProduct.productId);
                       },
                     ),
                   ],
