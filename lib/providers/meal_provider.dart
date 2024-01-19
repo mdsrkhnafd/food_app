@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import '../models/meal_model.dart';
 
 class MealProvider with ChangeNotifier {
@@ -33,6 +34,32 @@ class MealProvider with ChangeNotifier {
         .toList();
     return searchList;
   }
+
+  final userDb = FirebaseFirestore.instance.collection("users");
+  final _auth = FirebaseAuth.instance;
+
+  Future<void> removeMealFromFirestore({
+    required String productId,
+  }) async {
+    final User? user = _auth.currentUser;
+    try {
+      await userDb.doc(user!.uid).update({
+        'mealProducts': FieldValue.arrayRemove([
+          {
+            'productId': productId,
+          }
+        ])
+      });
+      // await fetchCart();
+      products.remove(productId);
+      Fluttertoast.showToast(msg: "Meal has been removed");
+      notifyListeners();
+    } catch (e) {
+      rethrow;
+    }
+
+  }
+
 
   final productDb = FirebaseFirestore.instance.collection("mealProducts");
 
